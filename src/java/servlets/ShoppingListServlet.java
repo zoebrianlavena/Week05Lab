@@ -13,17 +13,15 @@ public class ShoppingListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("value of action link: " + request.getParameter("action"));
         HttpSession session = request.getSession();
-        ArrayList<String> items = (ArrayList<String>) session.getAttribute("items");
         String action = request.getParameter("action");
         
         if(session.getAttribute("username") != null){
+            getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
             if (action.equals("logout")) {
                 HttpSession logout = request.getSession();
                 logout.invalidate();
             }
-            getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
@@ -55,6 +53,13 @@ public class ShoppingListServlet extends HttpServlet {
                 String item = request.getParameter("itemtoadd");
                 additems.add(item);
                 add.setAttribute("items", additems);
+                break;
+            case "delete":
+                HttpSession delete = request.getSession();
+                ArrayList<String> updatedelete = (ArrayList<String>) delete.getAttribute("items");
+                String todelete = request.getParameter("thisitem");
+                updatedelete.remove(todelete);
+                delete.setAttribute("items", updatedelete);
                 break;
         }
         getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);

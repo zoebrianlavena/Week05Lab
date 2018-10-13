@@ -9,20 +9,18 @@
     </head>
     <body>
         <h1>Shopping List</h1>
-        Hello, ${username}
-        <a href="ShoppingList?action=logout">Logout</a>
+        Hello, ${username} <a href="ShoppingList?action=logout">Logout</a>
         <h1>List</h1>
-        <form method="post">
+        <form method="post" action="ShoppingList?action=add">
             <input type="text" name="itemtoadd">
-            <input type="hidden" name="action" value="add">
             <input type="submit" value="Add">
         </form>
-        <ul>
-            <c:forEach var="item" items="${items}">
-                <input checked type="radio" name="radio" value="${item}"> ${item} <br>
-            </c:forEach>
-        </ul>
         <form method="post" action="ShoppingList?action=delete">
+            <ul>
+                <c:forEach var="item" items="${items}">
+                    <input type="radio" name="thisitem" value="${item}"> ${item} <br>
+                </c:forEach>
+            </ul>
             <br> <input type="submit" value="Delete">
         </form>
 
