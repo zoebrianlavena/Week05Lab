@@ -13,7 +13,7 @@
         <h1>List</h1>
         ${message}
         <form method="post" action="ShoppingList?action=add">
-            <input type="text" name="itemtoadd">
+            Add item: <input type="text" name="itemtoadd">
             <input type="submit" value="Add">
         </form>
         <form method="post" action="ShoppingList?action=delete">
