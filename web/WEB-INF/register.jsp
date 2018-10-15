@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>Shopping List</h1>
-        <form method="post" action="ShoppingList">
+        <form method="post" action="<c:url value='/ShoppingList' />">
             Username: <input type="text" name="username">
             <input type="hidden" name="action" value="register">
             <input type="submit" value="Register name">
